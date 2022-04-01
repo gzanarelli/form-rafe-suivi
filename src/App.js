@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import _ from 'lodash';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './App.css';
 import { TextInput } from './Input';
@@ -29,6 +29,13 @@ function App() {
   const [fileDownloadUrl, setFileDownloadUrl] = useState(null)
   const typeProductionEcs = watch('natureOfEcsProduction')
   const typeEnergie = watch('energyType')
+
+  useEffect(() => {
+    if (typeProductionEcs !== 'separate') {
+      setValue('combustibleConsumptionEcs', undefined)
+      setValue('currentEnergyTypeEcs', undefined)
+    }
+  }, [typeProductionEcs])
 
   const onSubmit = (values) => {
     let tmp = {}
