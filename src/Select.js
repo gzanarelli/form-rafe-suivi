@@ -1,25 +1,34 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, Autocomplete, TextField } from '@mui/material';
+import { useState } from 'react';
 import { Controller } from 'react-hook-form';
-export const SelectInput = ({name, control, label, options = []}) => {
+import ReactSelect from 'react-select';
+
+export const SelectInput = ({name, control, label, options = [], setValue, defaultValue = ''}) => {
+  const [selected, setSelected] = useState('')
   return (
     <Controller
       name={name}
       control={control}
       render={({field}) => {
-        return (<FormControl sx={{ m: 1, minWidth: 120 }} style={{marginTop: 10 }}>
-        <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
-        <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
-          label={label}
+        if (field.value === '') {
+          setSelected('')
+        }
+        return (<FormControl sx={{ width: '100%' }} style={{marginTop: 10 }}>
+        <Autocomplete
           {...field}
-        >
-          {
-            options.map(option => <MenuItem value={option.value}>{option.label}</MenuItem>)
-          }
-        </Select>
-      </FormControl>)
-      }}
+          disableClearable
+          value={selected}
+          // getOptionLabel={(options) => options.label}
+          onChange={(event, newValue) => {
+            setSelected(newValue.label)
+            setValue(name, newValue.value);
+          }}
+          options={options}
+          sx={{ width: '100%' }}
+          renderInput={(params) => <TextField {...params} label={label} value={selected} />}
+        />
+      </FormControl>
+    )}}
     />
   )
 } 
