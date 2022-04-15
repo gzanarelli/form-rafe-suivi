@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_70dc576e-a991-48a3-ac7f-75eb649f8240",
+      "org_id": "orga_c037052f-b8b1-4ae8-b868-90b215551770",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_70dc576e-a991-48a3-ac7f-75eb649f8240.git",
+      "name": "app-rafe-suivi",
+      "alias": "production"
+    }
+  ]
+}
