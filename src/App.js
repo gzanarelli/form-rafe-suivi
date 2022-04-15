@@ -173,7 +173,6 @@ function App() {
                   label='Nature de la production ECS'
                   control={control}
                   setValue={setValue}
-                  // defaultValue={_.map(optionsNatureOfEcs, option => option.value).indexOf(_.get(inventorySelected, 'generalInformations.boilerEnergy.isEcsProdCoupled', ''))}
                   options={optionsNatureOfEcs}
                 />
               </Grid>
